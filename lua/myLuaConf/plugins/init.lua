@@ -29,40 +29,53 @@ if nixCats('general.extra') then
   -- after the other lze definitions in the next call using priority value?
   -- didnt seem necessary.
   vim.g.loaded_netrwPlugin = 1
-  -- require("neo-tree").setup()
-  -- vim.keymap.set('n', '\\', '<cmd>Neotree reveal<CR>', { desc = 'Open NeoTree', silent = true })
-  require("oil").setup({
-    default_file_explorer = true,
-    view_options = {
-      show_hidden = true
-    },
-    columns = {
-      "icon",
-      "permissions",
-      "size",
-      -- "mtime",
-    },
-    keymaps = {
-      ["g?"] = "actions.show_help",
-      ["<CR>"] = "actions.select",
-      ["<C-s>"] = "actions.select_vsplit",
-      ["<C-h>"] = "actions.select_split",
-      ["<C-t>"] = "actions.select_tab",
-      ["<C-p>"] = "actions.preview",
-      ["<C-c>"] = "actions.close",
-      ["<C-l>"] = "actions.refresh",
-      ["-"] = "actions.parent",
-      ["_"] = "actions.open_cwd",
-      ["`"] = "actions.cd",
-      ["~"] = "actions.tcd",
-      ["gs"] = "actions.change_sort",
-      ["gx"] = "actions.open_external",
-      ["g."] = "actions.toggle_hidden",
-      ["g\\"] = "actions.toggle_trash",
-    },
+  require("neo-tree").setup({
+      event_handlers = {
+          -- Close the neo-tree window when a file is selected
+          {
+            event = "file_open_requested",
+            handler = function()
+              -- auto close
+              -- vim.cmd("Neotree close")
+              -- OR
+              require("neo-tree.command").execute({ action = "close" })
+            end
+          },
+      }
   })
-  vim.keymap.set("n", "-", "<cmd>Oil<CR>", { noremap = true, desc = 'Open Parent Directory' })
-  vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = 'Open nvim root directory' })
+  vim.keymap.set('n', '\\', '<cmd>Neotree reveal<CR>', { desc = 'Open NeoTree', silent = true })
+  -- require("oil").setup({
+  --   default_file_explorer = true,
+  --   view_options = {
+  --     show_hidden = true
+  --   },
+  --   columns = {
+  --     "icon",
+  --     "permissions",
+  --     "size",
+  --     -- "mtime",
+  --   },
+  --   keymaps = {
+  --     ["g?"] = "actions.show_help",
+  --     ["<CR>"] = "actions.select",
+  --     ["<C-s>"] = "actions.select_vsplit",
+  --     ["<C-h>"] = "actions.select_split",
+  --     ["<C-t>"] = "actions.select_tab",
+  --     ["<C-p>"] = "actions.preview",
+  --     ["<C-c>"] = "actions.close",
+  --     ["<C-l>"] = "actions.refresh",
+  --     ["-"] = "actions.parent",
+  --     ["_"] = "actions.open_cwd",
+  --     ["`"] = "actions.cd",
+  --     ["~"] = "actions.tcd",
+  --     ["gs"] = "actions.change_sort",
+  --     ["gx"] = "actions.open_external",
+  --     ["g."] = "actions.toggle_hidden",
+  --     ["g\\"] = "actions.toggle_trash",
+  --   },
+  -- })
+  -- vim.keymap.set("n", "-", "<cmd>Oil<CR>", { noremap = true, desc = 'Open Parent Directory' })
+  -- vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = 'Open nvim root directory' })
 end
 
 require('lze').load {

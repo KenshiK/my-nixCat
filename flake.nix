@@ -156,8 +156,8 @@
             noice-nvim
           ];
           extra = [
-            oil-nvim
-            # neo-tree-nvim
+            # oil-nvim
+            neo-tree-nvim
             nvim-web-devicons
           ];
         };

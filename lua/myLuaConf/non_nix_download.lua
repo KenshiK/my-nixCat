@@ -23,8 +23,8 @@ require('nixCatsUtils.catPacker').setup({
 --[[ ------------------------------------------ ]]
   { "BirdeeHub/lze", },
   { "BirdeeHub/lzextras", },
-  { "stevearc/oil.nvim", },
-  -- { "nvim-neo-tree/neo-tree.nvim", },
+  -- { "stevearc/oil.nvim", },
+  { "nvim-neo-tree/neo-tree.nvim", },
   { 'joshdick/onedark.vim', },
   { 'nvim-tree/nvim-web-devicons', },
   { 'nvim-lua/plenary.nvim', },
