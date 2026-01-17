@@ -324,6 +324,9 @@
         go = [
           [ "debug" "go" ] # yes it has to be a list of lists
         ];
+        rust = [
+          [ "debug" "rust" ] # yes it has to be a list of lists
+        ];
       };
     };
 
@@ -371,6 +374,8 @@
           lint = true;
           format = true;
           neonixdev = true;
+          rust = true;
+          go = true;
 
           # enabling this category will enable the go category,
           # and ALSO debug.go and debug.default due to our extraCats in categoryDefinitions.
